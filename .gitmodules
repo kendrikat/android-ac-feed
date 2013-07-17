@@ -2,3 +2,7 @@
 	path = ActionBarSherlock
 	url = https://github.com/JakeWharton/ActionBarSherlock
 	ignore = dirty
+[submodule "HoloEverywhere"]
+	path = HoloEverywhere
+	url = https://github.com/Prototik/HoloEverywhere
+	ignore = dirty

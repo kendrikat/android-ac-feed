@@ -1,12 +1,12 @@
 package de.endrikatz.android.ac.feed;
 
 import android.os.Bundle;
-import com.actionbarsherlock.app.SherlockActivity;
+import org.holoeverywhere.app.Activity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-public class ShowFeed extends SherlockActivity {
+public class ShowFeed extends Activity {
     /**
      * Called when the activity is first created.
      */
