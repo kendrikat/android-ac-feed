@@ -6,3 +6,7 @@
 	path = HoloEverywhere
 	url = https://github.com/Prototik/HoloEverywhere
 	ignore = dirty
+[submodule "robospice"]
+	path = robospice
+	url = https://github.com/octo-online/robospice
+	ignore = dirty
