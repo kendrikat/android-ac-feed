@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:holo="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory holo:title="@string/pref_api_category_base" >
+
+        <EditTextPreference
+            holo:id="@+id/pref_token_input"
+            holo:dialogTitle="@string/pref_api_token_title"
+            holo:title="@string/pref_api_token_title"
+            holo:summary="@string/pref_api_token_summary"
+            holo:key="pref_api_token"
+            holo:persistent="true" />
+
+        <EditTextPreference
+            holo:id="@+id/pref_url_input"
+            holo:dialogTitle="@string/pref_api_url_title"
+            holo:title="@string/pref_api_url_title"
+            holo:summary="@string/pref_api_url_summary"
+            holo:key="pref_api_url"
+            holo:persistent="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

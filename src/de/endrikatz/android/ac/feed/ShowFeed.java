@@ -1,5 +1,6 @@
 package de.endrikatz.android.ac.feed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import org.holoeverywhere.app.Activity;
 import com.actionbarsherlock.view.Menu;
@@ -29,7 +30,8 @@ public class ShowFeed extends Activity {
         switch (item.getItemId()) {
 
             case R.id.menu_settins:
-
+                Intent intent = new Intent(this, Settings.class);
+                startActivity(intent);
                 return true;
 
             case android.R.id.home:

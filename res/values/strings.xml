@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">AACF</string>
     <string name="menu_settings">Settings</string>
+
+    <string name="pref_summary">Settings</string>
+    <string name="pref_api_category_base">Required</string>
+
+    <string name="pref_api_title">API Access</string>
+    <string name="pref_api_summary">URL and API authentication token</string>
+
+    <string name="pref_api_token_title">API Auth Token</string>
+    <string name="pref_api_token_summary">Paste your token here</string>
+    <string name="pref_api_url_title">URL of ActiveCollab</string>
+    <string name="pref_api_url_summary">Example: ac.yourcompany.com</string>
+
 </resources>

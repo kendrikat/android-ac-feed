@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:holo="http://schemas.android.com/apk/res-auto" >
+
+    <header
+        holo:fragment="de.endrikatz.android.ac.feed.fragments.SettingsAPI"
+        holo:icon="@drawable/ic_action_device_access_accounts_dark"
+        holo:title="@string/pref_api_title"
+        holo:summary="@string/pref_api_summary" />
+
+</preference-headers>
