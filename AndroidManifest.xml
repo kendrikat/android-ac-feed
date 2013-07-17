@@ -4,16 +4,22 @@
           android:versionCode="1"
           android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="8"
+    <uses-sdk
+        android:minSdkVersion="8"
         android:targetSdkVersion="16"/>
 
-    <application android:label="@string/app_name"
-                 android:theme="@style/Holo.Theme"
-                 android:icon="@drawable/ic_launcher"
-                 android:name="org.holoeverywhere.app.Application">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-        <activity android:name="ShowFeed"
-                  android:label="@string/app_name">
+    <application
+        android:label="@string/app_name"
+        android:theme="@style/Holo.Theme"
+        android:icon="@drawable/ic_launcher"
+        android:name="org.holoeverywhere.app.Application">
+
+        <activity
+            android:name="ShowFeed"
+            android:label="@string/app_name">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,5 +29,11 @@
         </activity>
         <activity android:name=".Settings"/>
 
+        <service
+            android:name="com.octo.android.robospice.GsonSpringAndroidSpiceService"
+            android:exported="false"/>
+        <service
+            android:name="com.octo.android.robospice.spicelist.BitmapSpiceService"
+            android:exported="false"/>
     </application>
 </manifest> 

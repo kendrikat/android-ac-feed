@@ -1,9 +1,8 @@
 package de.endrikatz.android.ac.feed.fragments;
 
+import android.os.Bundle;
 import de.endrikatz.android.ac.feed.R;
 import org.holoeverywhere.preference.PreferenceFragment;
-
-import android.os.Bundle;
 
 public class SettingsAPI extends PreferenceFragment {
 
@@ -17,6 +16,6 @@ public class SettingsAPI extends PreferenceFragment {
     @Override
     public void onResume() {
         super.onResume();
-        getSupportActionBar().setSubtitle("Settings");
+        getSupportActionBar().setSubtitle(R.string.menu_settings);
     }
 }

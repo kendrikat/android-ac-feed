@@ -8,7 +8,7 @@
             holo:dialogTitle="@string/pref_api_token_title"
             holo:title="@string/pref_api_token_title"
             holo:summary="@string/pref_api_token_summary"
-            holo:key="pref_api_token"
+            holo:key="@string/const_pref_api_token"
             holo:persistent="true" />
 
         <EditTextPreference
@@ -16,7 +16,7 @@
             holo:dialogTitle="@string/pref_api_url_title"
             holo:title="@string/pref_api_url_title"
             holo:summary="@string/pref_api_url_summary"
-            holo:key="pref_api_url"
+            holo:key="@string/const_pref_api_url"
             holo:persistent="true" />
 
     </PreferenceCategory>
