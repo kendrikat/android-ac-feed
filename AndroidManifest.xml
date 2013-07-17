@@ -3,8 +3,9 @@
           package="de.endrikatz.android.ac.feed"
           android:versionCode="1"
           android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="8"/>
-    <application android:label="@string/app_name">
+    <uses-sdk android:minSdkVersion="8"
+        android:targetSdkVersion="16"/>
+    <application android:label="@string/app_name" android:theme="@style/Theme.Sherlock">
         <activity android:name="ShowFeed"
                   android:label="@string/app_name">
             <intent-filter>
