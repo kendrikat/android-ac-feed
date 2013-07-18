@@ -10,3 +10,7 @@
 	path = robospice
 	url = https://github.com/octo-online/robospice
 	ignore = dirty
+[submodule "Crouton"]
+	path = Crouton
+	url = https://github.com/keyboardsurfer/Crouton
+	ignore = dirty

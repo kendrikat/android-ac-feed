@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ListView;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -17,9 +18,10 @@ import com.octo.android.robospice.spicelist.BitmapSpiceManager;
 import de.endrikatz.android.ac.feed.api.StatusRequest;
 import de.endrikatz.android.ac.feed.api.StatusUpdateListAdapter;
 import de.endrikatz.android.ac.feed.data.StatusList;
+import de.keyboardsurfer.android.widget.crouton.Configuration;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import org.holoeverywhere.app.Activity;
-import android.widget.ListView;
-import org.holoeverywhere.widget.Toast;
 
 import java.util.Calendar;
 
@@ -141,13 +143,16 @@ public class ShowFeed extends Activity {
         @Override
         public void onRequestFailure(SpiceException e) {
             setSupportProgressBarIndeterminateVisibility(false);
-            Toast.makeText(getApplicationContext(),
-                    "Error during request: " + e.getMessage(),
-                    Toast.LENGTH_LONG).show();
+            Crouton.makeText(ShowFeed.this,
+                    getString(R.string.global_msg_error_request) + e.getMessage(),
+                    Style.ALERT, Configuration.DURATION_LONG).show();
         }
 
         @Override
         public void onRequestSuccess(StatusList statusList) {
+            Crouton.makeText(ShowFeed.this,
+                    getString(R.string.global_msg_info_loaded_messages),
+                    Style.INFO, Configuration.DURATION_SHORT).show();
             updateListViewContent(statusList);
             setSupportProgressBarIndeterminateVisibility(false);
         }
