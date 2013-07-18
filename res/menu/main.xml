@@ -8,6 +8,12 @@
         android:title="@string/menu_refresh"/>
 
     <item
+        android:id="@+id/menu_compose"
+        android:icon="@drawable/ic_action_content_edit_dark"
+        android:showAsAction="always|withText"
+        android:title="@string/menu_compose"/>
+
+    <item
         android:id="@+id/menu_settings"
         android:showAsAction="never"
         android:title="@string/menu_settings"/>
