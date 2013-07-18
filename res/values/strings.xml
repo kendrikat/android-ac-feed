@@ -15,9 +15,11 @@
     <string name="pref_api_token_title">API Auth Token</string>
     <string name="pref_api_token_summary">Paste your token here</string>
     <string name="pref_api_url_title">URL of ActiveCollab</string>
-    <string name="pref_api_url_summary">Example: ac.yourcompany.com</string>
+    <string name="pref_api_url_summary">https://ac.company.com/api.php</string>
 
     <string name="const_pref_api_token">pref_key_api_token</string>
     <string name="const_pref_api_url">pref_key_api_url</string>
+
+    <string name="content_description_avatar">loading</string>
 
 </resources>

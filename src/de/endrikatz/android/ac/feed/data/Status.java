@@ -7,6 +7,7 @@ public class Status {
     String message = "";
     String message_clickable = "";
     User created_by = new User();
+    Date created_on = new Date();
     ArrayList<Status> replies = new ArrayList<Status>();
 
     public int getId() {
@@ -33,11 +34,19 @@ public class Status {
         this.message_clickable = message_clickable;
     }
 
-    public User getCreated_by() {
+    public User getUser() {
         return created_by;
     }
 
-    public void setCreated_by(User created_by) {
-        this.created_by = created_by;
+    public void setUser(User user) {
+        this.created_by = user;
+    }
+
+    public Date getDate() {
+        return created_on;
+    }
+
+    public void setDate(Date date) {
+        this.created_on = date;
     }
 }

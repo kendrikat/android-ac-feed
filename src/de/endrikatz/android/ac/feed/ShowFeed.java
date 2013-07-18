@@ -3,6 +3,7 @@ package de.endrikatz.android.ac.feed;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -14,8 +15,10 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.octo.android.robospice.spicelist.BitmapSpiceManager;
 import de.endrikatz.android.ac.feed.api.StatusRequest;
+import de.endrikatz.android.ac.feed.api.StatusUpdateListAdapter;
 import de.endrikatz.android.ac.feed.data.StatusList;
 import org.holoeverywhere.app.Activity;
+import android.widget.ListView;
 import org.holoeverywhere.widget.Toast;
 
 import java.util.Calendar;
@@ -28,12 +31,17 @@ public class ShowFeed extends Activity {
     protected SpiceManager contentManager = new SpiceManager(
             GsonSpringAndroidSpiceService.class);
     protected String lastRequestCacheKey;
+    private ListView statusUpdateListView;
+    private StatusUpdateListAdapter statusUpdateListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.main);
+        setSupportProgressBarIndeterminateVisibility(false);
+
+        statusUpdateListView = (ListView) findViewById(R.id.listview_status_updates);
     }
 
     @Override
@@ -113,8 +121,14 @@ public class ShowFeed extends Activity {
         }
     }
 
+    private void updateListViewContent(StatusList statusList) {
+        statusUpdateListAdapter = new StatusUpdateListAdapter(this, spiceManagerBinary, statusList);
+        statusUpdateListView.setAdapter(statusUpdateListAdapter);
+        statusUpdateListView.setVisibility(View.VISIBLE);
+    }
+
     private void performRequest() {
-        this.setProgressBarIndeterminateVisibility(true);
+        this.setSupportProgressBarIndeterminateVisibility(true);
 
         StatusRequest request = new StatusRequest(String.valueOf(Calendar.getInstance().get(Calendar.MINUTE)), getApplicationContext());
         lastRequestCacheKey = request.createCacheKey();
@@ -126,17 +140,16 @@ public class ShowFeed extends Activity {
     private class FeedRequestListener implements RequestListener<StatusList> {
         @Override
         public void onRequestFailure(SpiceException e) {
+            setSupportProgressBarIndeterminateVisibility(false);
             Toast.makeText(getApplicationContext(),
                     "Error during request: " + e.getMessage(),
                     Toast.LENGTH_LONG).show();
-            ShowFeed.this.setProgressBarIndeterminateVisibility(false);
         }
 
         @Override
         public void onRequestSuccess(StatusList statusList) {
-
-            //Log.d(TAG, statusList.toString());
-            ShowFeed.this.setProgressBarIndeterminateVisibility(false);
+            updateListViewContent(statusList);
+            setSupportProgressBarIndeterminateVisibility(false);
         }
     }
 }
