@@ -70,7 +70,7 @@ public class ShowFeed extends Activity {
 
         switch (item.getItemId()) {
 
-            case R.id.menu_settins:
+            case R.id.menu_settings:
                 Intent intent = new Intent(this, Settings.class);
                 startActivity(intent);
                 return true;
@@ -79,8 +79,8 @@ public class ShowFeed extends Activity {
                 performRequest();
                 return true;
 
-            case android.R.id.home:
-
+            case R.id.menu_quit:
+                finish();
                 return true;
 
             default:

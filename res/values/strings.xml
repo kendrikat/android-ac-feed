@@ -21,5 +21,6 @@
     <string name="const_pref_api_url">pref_key_api_url</string>
 
     <string name="content_description_avatar">loading</string>
+    <string name="menu_quit">Quit</string>
 
 </resources>

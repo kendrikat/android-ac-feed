@@ -8,9 +8,12 @@
         android:title="@string/menu_refresh"/>
 
     <item
-        android:id="@+id/menu_settins"
-        android:icon="@drawable/ic_action_action_settings_dark"
-        android:showAsAction="always|withText"
+        android:id="@+id/menu_settings"
+        android:showAsAction="never"
         android:title="@string/menu_settings"/>
 
+    <item
+        android:id="@+id/menu_quit"
+        android:showAsAction="never"
+        android:title="@string/menu_quit"/>
 </menu>
