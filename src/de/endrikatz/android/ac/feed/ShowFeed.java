@@ -22,8 +22,7 @@ import de.keyboardsurfer.android.widget.crouton.Configuration;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 import org.holoeverywhere.app.Activity;
-
-import java.util.Calendar;
+import org.holoeverywhere.preference.PreferenceManager;
 
 public class ShowFeed extends Activity {
 
@@ -44,6 +43,10 @@ public class ShowFeed extends Activity {
         setSupportProgressBarIndeterminateVisibility(false);
 
         statusUpdateListView = (ListView) findViewById(R.id.listview_status_updates);
+
+        if (PreferenceManager.getDefaultSharedPreferences(this).contains(getString(R.string.const_pref_api_token))) {
+            performRequest(false);
+        }
     }
 
     @Override
@@ -78,7 +81,7 @@ public class ShowFeed extends Activity {
                 return true;
 
             case R.id.menu_refresh:
-                performRequest();
+                performRequest(true);
                 return true;
 
             case R.id.menu_quit:
@@ -129,14 +132,17 @@ public class ShowFeed extends Activity {
         statusUpdateListView.setVisibility(View.VISIBLE);
     }
 
-    private void performRequest() {
+    private void performRequest(Boolean refresh) {
         this.setSupportProgressBarIndeterminateVisibility(true);
 
-        StatusRequest request = new StatusRequest(String.valueOf(Calendar.getInstance().get(Calendar.MINUTE)), getApplicationContext());
+        StatusRequest request = new StatusRequest(getApplicationContext());
         lastRequestCacheKey = request.createCacheKey();
 
+        if (refresh) {
+            contentManager.removeDataFromCache(StatusList.class, lastRequestCacheKey);
+        }
         contentManager.execute(request, lastRequestCacheKey,
-                DurationInMillis.ALWAYS_EXPIRED, new FeedRequestListener());
+                DurationInMillis.ONE_HOUR, new FeedRequestListener());
     }
 
     private class FeedRequestListener implements RequestListener<StatusList> {

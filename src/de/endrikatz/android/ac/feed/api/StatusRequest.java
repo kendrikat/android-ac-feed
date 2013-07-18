@@ -9,22 +9,26 @@ import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.springframework.http.ResponseEntity;
 
-public class StatusRequest extends SpringAndroidSpiceRequest<StatusList> {
-    private String tag;
-    private Context ctx;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
-    public StatusRequest(String tag, Context ctx) {
+public class StatusRequest extends SpringAndroidSpiceRequest<StatusList> {
+    private String apiUrl;
+    private String apiToken;
+
+    public StatusRequest(Context ctx) {
         super(StatusList.class);
-        this.tag = tag;
-        this.ctx = ctx;
+
+        // TODO: cleanup
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        apiUrl = prefs.getString(ctx.getString(R.string.const_pref_api_url), "");
+        apiToken = prefs.getString(ctx.getString(R.string.const_pref_api_token), "");
     }
 
     @Override
     public StatusList loadDataFromNetwork() throws Exception {
-        // TODO: cleanup
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        String apiUrl = prefs.getString(ctx.getString(R.string.const_pref_api_url), "");
-        String apiToken = prefs.getString(ctx.getString(R.string.const_pref_api_token), "");
 
         Uri.Builder uriBuilder = Uri.parse(apiUrl).buildUpon();
         uriBuilder.appendQueryParameter(Constants.CONST_API_PARAM_TYPE_PATH, Constants.CONST_API_PARAM_TYPE_PATH_STATUS);
@@ -39,6 +43,16 @@ public class StatusRequest extends SpringAndroidSpiceRequest<StatusList> {
     }
 
     public String createCacheKey() {
-        return "feed." + tag;
+        try {
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            byte[] hash = digest.digest(apiToken.getBytes("UTF-8"));
+            return String.format("%032x", new BigInteger(1, hash));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        // TODO: cleanup
+        return String.valueOf(System.currentTimeMillis());
     }
 }
