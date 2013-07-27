@@ -49,4 +49,8 @@ public class Status {
     public void setDate(Date date) {
         this.created_on = date;
     }
+
+    public int getReplyCount() {
+        return replies.size();
+    }
 }

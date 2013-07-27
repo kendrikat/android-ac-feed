@@ -17,8 +17,10 @@ public class StatusUpdateView extends RelativeLayout implements
     private TextView statusUserNameTextView;
     private TextView statusDateTextView;
     private TextView statusContentTextView;
+    private TextView statusReplyCountTextView;
     private ImageView thumbImageView;
     private Status status;
+
 
     public StatusUpdateView(Context context) {
         super(context);
@@ -32,10 +34,11 @@ public class StatusUpdateView extends RelativeLayout implements
         this.statusDateTextView = (TextView) this
                 .findViewById(R.id.status_update_date);
         this.statusContentTextView = (TextView) this
-                .findViewById(R.id.comment_content_textview);
+                .findViewById(R.id.status_update_content);
         this.thumbImageView = (ImageView) this
                 .findViewById(R.id.status_update_thumbnail);
-
+        this.statusReplyCountTextView = (TextView) this
+                .findViewById(R.id.status_update_replycount);
     }
 
     @Override
@@ -44,6 +47,8 @@ public class StatusUpdateView extends RelativeLayout implements
         statusUserNameTextView.setText(status.getUser().getName());
         statusDateTextView.setText(status.getDate().getFormattedGmt());
         statusContentTextView.setText(String.valueOf(status.getMessage()));
+        statusReplyCountTextView.setText(
+                getResources().getQuantityString(R.plurals.replies, status.getReplyCount(), status.getReplyCount()));
     }
 
     @Override

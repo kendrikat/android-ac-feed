@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals
+        name="replies">
+        <item quantity="zero">No replies yet</item>
+        <item quantity="one">One reply</item>
+        <item quantity="other">%d replies</item>
+    </plurals>
+</resources>

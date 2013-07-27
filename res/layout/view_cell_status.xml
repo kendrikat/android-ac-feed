@@ -26,20 +26,27 @@
 
     <TextView
         android:id="@+id/status_update_date"
-        android:textColor="@color/holo_orange_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:textSize="9sp"/>
+        android:textSize="8sp"/>
 
     <TextView
-        android:id="@+id/comment_content_textview"
+        android:id="@+id/status_update_content"
         style="@android:style/TextAppearance.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/status_update_username"
         android:layout_below="@id/status_update_username"
         android:autoLink="all"/>
+
+    <TextView
+        android:id="@+id/status_update_replycount"
+        android:textSize="8sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/status_update_date"
+        android:layout_below="@id/status_update_date"/>
 
 </RelativeLayout>
