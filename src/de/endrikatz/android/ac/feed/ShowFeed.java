@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -21,6 +22,7 @@ import de.endrikatz.android.ac.feed.api.StatusRequest;
 import de.endrikatz.android.ac.feed.api.StatusUpdateListAdapter;
 import de.endrikatz.android.ac.feed.data.Status;
 import de.endrikatz.android.ac.feed.data.StatusList;
+import de.endrikatz.android.ac.feed.views.StatusUpdateView;
 import de.keyboardsurfer.android.widget.crouton.Configuration;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
@@ -29,16 +31,18 @@ import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.widget.EditText;
 
+import java.util.ArrayList;
+
 public class ShowFeed extends Activity {
 
     protected static final String KEY_LAST_REQUEST_CACHE_KEY = "lastRequestCacheKey";
-    private static final String TAG = "ShowFeed";
+    protected static final String KEY_REPLIES = "replies";
     public BitmapSpiceManager spiceManagerBinary = new BitmapSpiceManager();
     protected SpiceManager contentManager = new SpiceManager(
             GsonSpringAndroidSpiceService.class);
     protected String lastRequestCacheKey;
-    private ListView statusUpdateListView;
-    private StatusUpdateListAdapter statusUpdateListAdapter;
+    protected ListView statusUpdateListView;
+    protected StatusUpdateListAdapter statusUpdateListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,14 +53,18 @@ public class ShowFeed extends Activity {
 
         statusUpdateListView = (ListView) findViewById(R.id.listview_status_updates);
 
-        if (PreferenceManager.getDefaultSharedPreferences(this).contains(getString(R.string.const_pref_api_token))) {
-            performRequest(false);
-        }
+        updateFeed();
 
         if (getIntent().hasExtra(Intent.EXTRA_TEXT)) {
             String message = getIntent().getStringExtra(Intent.EXTRA_TEXT);
             //String subject = getIntent().getStringExtra(Intent.EXTRA_SUBJECT);
             openPostStatusUpdateDialog(message);
+        }
+    }
+
+    protected void updateFeed() {
+        if (PreferenceManager.getDefaultSharedPreferences(this).contains(getString(R.string.const_pref_api_token))) {
+            performRequest(false);
         }
     }
 
@@ -141,10 +149,26 @@ public class ShowFeed extends Activity {
         }
     }
 
-    private void updateListViewContent(StatusList statusList) {
+    protected void updateListViewContent(ArrayList<Status> statusList) {
         statusUpdateListAdapter = new StatusUpdateListAdapter(this, spiceManagerBinary, statusList);
         statusUpdateListView.setAdapter(statusUpdateListAdapter);
         statusUpdateListView.setVisibility(View.VISIBLE);
+        statusUpdateListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if (((StatusUpdateView) view).getData().getReplyCount() == 0) {
+                    Crouton.makeText(ShowFeed.this,
+                            getString(R.string.global_msg_info_no_replies),
+                            Style.INFO, Configuration.DURATION_SHORT).show();
+                } else {
+                    Intent showRepliesIntent = new Intent(ShowFeed.this, ShowReplies.class);
+                    showRepliesIntent.putParcelableArrayListExtra(
+                            KEY_REPLIES, ((StatusUpdateView) view).getData().getReplies());
+                    startActivity(showRepliesIntent);
+                }
+            }
+        });
     }
 
     private void performRequest(Boolean refresh) {

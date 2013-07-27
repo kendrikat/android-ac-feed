@@ -11,11 +11,12 @@ import de.endrikatz.android.ac.feed.data.StatusList;
 import de.endrikatz.android.ac.feed.views.StatusUpdateView;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class StatusUpdateListAdapter extends SpiceArrayAdapter<Status> {
 
     public StatusUpdateListAdapter(Context context,
-                                   BitmapSpiceManager spiceManagerBitmap, StatusList statusList) {
+                                   BitmapSpiceManager spiceManagerBitmap, ArrayList<Status> statusList) {
         super(context, spiceManagerBitmap, statusList);
     }
 

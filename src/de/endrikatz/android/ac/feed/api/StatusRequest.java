@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 import de.endrikatz.android.ac.feed.R;
+import de.endrikatz.android.ac.feed.data.Status;
 import de.endrikatz.android.ac.feed.data.StatusList;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
@@ -39,7 +40,10 @@ public class StatusRequest extends SpringAndroidSpiceRequest<StatusList> {
 
         ResponseEntity<StatusList> response = getRestTemplate().getForEntity(url,
                 StatusList.class);
-        return response.getBody();
+
+        StatusList result = response.getBody();
+
+        return result;
     }
 
     public String createCacheKey() {

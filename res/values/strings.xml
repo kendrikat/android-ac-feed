@@ -28,11 +28,13 @@
     <string name="global_msg_info_loaded_messages">Messages updated!^1</string>
     <string name="global_msg_info_saved_setting">Setting updated</string>
     <string name="global_msg_info_posted_message">Message posted!</string>
+    <string name="global_msg_info_no_replies">Nothing to see here :/</string>
 
     <string name="global_alert_submit">OK</string>
     <string name="global_alert_cancel">Cancel</string>
 
     <string name="form_post_update_title">Found something? Share it!</string>
+
 
 
 </resources>
