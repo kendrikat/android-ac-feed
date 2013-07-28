@@ -22,6 +22,7 @@ import de.endrikatz.android.ac.feed.api.StatusRequest;
 import de.endrikatz.android.ac.feed.api.StatusUpdateListAdapter;
 import de.endrikatz.android.ac.feed.data.Status;
 import de.endrikatz.android.ac.feed.data.StatusList;
+import de.endrikatz.android.ac.feed.helper.ThemeHelper;
 import de.endrikatz.android.ac.feed.views.StatusUpdateView;
 import de.keyboardsurfer.android.widget.crouton.Configuration;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -46,6 +47,7 @@ public class ShowFeed extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.checkThemePreference(this);
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.main);

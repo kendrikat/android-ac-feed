@@ -7,4 +7,10 @@
         holo:title="@string/pref_api_title"
         holo:summary="@string/pref_api_summary" />
 
+    <header
+        holo:fragment="de.endrikatz.android.ac.feed.fragments.SettingsGeneral"
+        holo:icon="@drawable/ic_action_action_settings_dark"
+        holo:title="@string/pref_general_title"
+        holo:summary="@string/pref_general_summary" />
+
 </preference-headers>

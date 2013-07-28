@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:holo="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory holo:title="@string/pref_appearance_category_base">
+
+        <ListPreference
+            holo:key="@string/const_pref_theme_select"
+            holo:entries="@array/theme"
+            holo:dialogTitle="@string/pref_general_theme_title"
+            holo:title="@string/pref_general_theme_title"
+            holo:summary="@string/pref_general_theme_summary"
+            holo:entryValues="@array/themeValues"
+            holo:persistent="true"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -3,6 +3,7 @@ package de.endrikatz.android.ac.feed;
 import android.content.Intent;
 import android.os.Bundle;
 import com.actionbarsherlock.view.MenuItem;
+import de.endrikatz.android.ac.feed.helper.ThemeHelper;
 import org.holoeverywhere.preference.PreferenceActivity;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class Settings extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.checkThemePreference(this);
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
